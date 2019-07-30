@@ -1,0 +1,13 @@
+.has-search .form-control-feedback {
+    z-index: 2;
+    display: block;
+    width: 2.275rem;
+    height: 1.375rem;
+    line-height: 7.175rem;
+    text-align: center;
+    pointer-events: none;
+    color: rgb(29, 27, 27);
+    float: right;
+    margin-top: -49px;
+    margin-right: 9px;
+}
