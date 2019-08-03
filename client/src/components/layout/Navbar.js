@@ -18,7 +18,18 @@ class Navbar extends Component {
           >
             <span className="navbar-toggler-icon" />
           </button>
+         
         </div>
+        <ul>
+            <Link className="btn btn-info" to="/add">
+              Add new
+            </Link>
+          </ul>
+          <ul>
+            <Link className="btn btn-info" to="/contactus-list">
+              Contactus list
+            </Link>
+          </ul>
       </nav>
 		)
 	}

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 
 import TextFieldGroup from '../common/TextFieldGroup'
-import './Appendix.css'
+import '../appendix/Appendix.css'
 import SpinnerLoader from '../common/Spinner'
 import { Link } from 'react-router-dom'
 import Pagination from '../common/Pagination'
@@ -18,17 +18,12 @@ class AppendixList extends Component {
             srNo:         ''
     }
     this.onChange               =   this.onChange.bind(this)
-    this.sectorOnClick          =   this.sectorOnClick.bind(this)
-    this.industryOnClick        =   this.industryOnClick.bind(this)
-    this.availabilityOnClick    =   this.availabilityOnClick.bind(this)
-    this.countryOnClick         =   this.countryOnClick.bind(this)
-
     this.onChangePage           =   this.onChangePage.bind(this)
    }
 
     componentDidMount() {
         axios
-            .get('/api/appendix/list') //geting API data
+            .get('/api/contactus/list') //geting API data
             .then(thread => {
                 this.setState({
                     threadlist: thread.data,
@@ -43,46 +38,7 @@ class AppendixList extends Component {
 
         })
     }
-    sectorOnClick() {
-        axios
-        .get(`/api/appendix/sector/search`) //geting API data
-        .then(name => {
-            this.setState({
-                threadlist: name.data,
-                spinner: false
-            })                  
-        })
-    }
-    industryOnClick() {
-        axios
-        .get(`/api/appendix/industry/search`) //geting API data
-        .then(name => {
-            this.setState({
-                threadlist: name.data,
-                spinner: false
-            })                  
-        })
-    }
-    availabilityOnClick() {
-        axios
-        .get(`/api/appendix/availability/search`) //geting API data
-        .then(name => {
-            this.setState({
-                threadlist: name.data,
-                spinner: false
-            })                  
-        })
-    }
-    countryOnClick() {
-        axios
-        .get(`/api/appendix/country/search`) //geting API data
-        .then(name => {
-            this.setState({
-                threadlist: name.data,
-                spinner: false
-            })                  
-        })
-    }
+   
     
    // filter method
     onChange(e) {        
@@ -115,11 +71,9 @@ class AppendixList extends Component {
                 <tr key={key} >
                     <td>{this.state.srNo++}</td>
                     <td >{appendix.name}</td>
-                    <td>{appendix.sector}</td>
-                    <td>{appendix.industry}</td>
-                    <td>{appendix.availability}</td>
-                    <td>{appendix.country}</td>
-                    <td><Link className="btn btn-info" to="/contact-book">Book</Link></td>
+                    <td>{appendix.address}</td>
+                    <td>{appendix.mobileno}</td>
+                    <td>{appendix.appendix}</td>
                 </tr>                       
             ))
         }
@@ -128,7 +82,7 @@ class AppendixList extends Component {
             <Fragment>
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-5">
                         <h4>Search By Keyword</h4>
                         </div>
                         <div className="col-md-6">                        
@@ -144,29 +98,7 @@ class AppendixList extends Component {
                     </div>
                     <hr/>
                     <div className="row">
-                        <div className="col-md-3">
-                            <div className="card">
-                                <div className="ml-4 mt-3">
-                                    <input type="checkbox" 
-                                         onClick={this.sectorOnClick}
-                                    />
-                                    <label className="ml-2">Sector</label><br/>
-                                    <input type="checkbox" 
-                                        onClick= {this.industryOnClick}
-                                    />
-                                    <label className="ml-2">Industry / Academia</label><br/>
-                                    <input type="checkbox" 
-                                        onClick= {this.availabilityOnClick}
-                                    
-                                    />
-                                    <label className="ml-2">Availability</label><br/>
-                                    <input type="checkbox" 
-                                        onClick= {this.countryOnClick}                                    
-                                    />
-                                    <label className="ml-2">Country</label>
-                                </div>
-                            </div>
-                        </div><br/>     
+                    <div className="col-md-2"></div>
                         <div className="col-md-9">
                             <div className="table-responsive">
                                 <table className="table-bordered table">
@@ -174,11 +106,9 @@ class AppendixList extends Component {
                                         <tr className="table-info">
                                             <th>Sr no.</th>
                                             <th>Name</th>
-                                            <th>Sector</th>
-                                            <th>industry</th>
-                                            <th>Availability</th>
-                                            <th>Country</th>
-                                            <th>Contact us</th>
+                                            <th>Address</th>
+                                            <th>Mobileno</th>
+                                            <th>Appendix</th>
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -6,16 +6,17 @@ import { withRouter } from 'react-router-dom'
 
 //resuable component
 import TextFieldGroup from '../common/TextFieldGroup'
-import { postContactUs } from '../../actions/contactUsAction'
+import { postAppendix } from '../../actions/appendixAction'
 
 class ContactUs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name:       '',
-            address:    '',
-            mobileno:   '',
-            appendix:   '',
+            name:         '',
+            sector:       '',
+            industry:     '',
+            availability: '',
+            country:      '', 
             errors:     {}
         };
     
@@ -30,14 +31,15 @@ class ContactUs extends Component {
    
     onSubmit(e) {
         e.preventDefault()              
-        const contactus = {
-            name:       this.state.name,
-            address:    this.state.address,
-            mobileno:   this.state.mobileno,
-            appendix:   this.state.appendix
+        const appendix = {
+            name:         this.state.name,
+            sector:       this.state.sector,
+            industry:     this.state.industry,
+            availability: this.state.availability,
+            country:      this.state.country,
         }
-        // console.log(contactus)
-        this.props.postContactUs(contactus, this.props.history)
+        console.log(appendix)
+        this.props.postAppendix(appendix, this.props.history)
     }
      
     //dynamic change state
@@ -53,7 +55,7 @@ class ContactUs extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                        <h3 className="display-8">Contact Details</h3>
+                        <h3 className="display-8">Create Appendix Records</h3>
                         <hr/> <br/>
                             <form noValidate onSubmit= {this.onSubmit}>
                                 <TextFieldGroup 
@@ -65,29 +67,37 @@ class ContactUs extends Component {
                                     erorr={errors.name}                                    
                                 />
                                 <TextFieldGroup 
-                                    placeholder="Address"
+                                    placeholder="sector"
                                     type="text"
-                                    name='address'
-                                    value={this.state.address}
+                                    name='sector'
+                                    value={this.state.sector}
                                     onChange={this.onChange} 
-                                    erorr={errors.address}                                   
+                                    erorr={errors.sector}                                   
                                 />
                                  <TextFieldGroup 
-                                    placeholder="Mobile no"
-                                    type="number"
-                                    name='mobileno'
-                                    value={this.state.mobileno}
+                                    placeholder="Industry"
+                                    type="text"
+                                    name='industry'
+                                    value={this.state.industry}
                                     onChange={this.onChange} 
-                                    erorr={errors.mobileno}                                    
+                                    erorr={errors.industry}                                    
 
                                 />
-                                 <TextFieldGroup 
-                                    placeholder="Appendix"
+                                <TextFieldGroup 
+                                    placeholder="Availability"
                                     type="text"
-                                    name='appendix'
-                                    value={this.state.appendix}
+                                    name='availability'
+                                    value={this.state.availability}
                                     onChange={this.onChange} 
-                                    erorr={errors.appendix}                                   
+                                    erorr={errors.availability}                                   
+                                />
+                                 <TextFieldGroup 
+                                    placeholder="Country"
+                                    type="text"
+                                    name='country'
+                                    value={this.state.country}
+                                    onChange={this.onChange} 
+                                    erorr={errors.country}                                   
                                 />
                                 <input type="submit" value="Send" className="btn btn-info float-right mt-4 text-center" />
                             </form>
@@ -99,11 +109,11 @@ class ContactUs extends Component {
     }
 }
 ContactUs.propTypes = {
-    postContactUs: PropTypes.func.isRequired,
+    postAppendix: PropTypes.func.isRequired,
     errors: PropTypes.object.isRequired
 
 }
 const mapStateToProps = state => ({
     errors: state.errors
   })
-export default connect(mapStateToProps, { postContactUs })(withRouter(ContactUs));
+export default connect(mapStateToProps, { postAppendix })(withRouter(ContactUs));

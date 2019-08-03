@@ -31,8 +31,8 @@ router.post('/contactus', async (req, res) => {
 // route GET api/contactus/list
 // access Public
 router.get('/contactus/list', (req, res) => {
-    Threads
-        .find({ user: req.user.id })
+    Contactus
+        .find()
         .sort({date: '-1'})
         .then(thread => res.json(thread))
         .catch(err => console.log(err))
